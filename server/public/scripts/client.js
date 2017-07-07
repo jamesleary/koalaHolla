@@ -12,11 +12,11 @@ $( document ).ready( function(){
     // NOT WORKING YET :(
     // using a test object
     var objectToSend = {
-      name: 'testName',
-      age: 'testName',
-      gender: 'testName',
-      readyForTransfer: 'testName',
-      notes: 'testName',
+      koala_name: $('#nameIn').val(),
+      age: $('#ageIn').val(),
+      gender: $('#genderIn').val(),
+      ready_for_transfer: $('#readyForTransferIn').val(),
+      notes: $('#notesIn').val(),
     };
     // call saveKoala with the new obejct
     saveKoala( objectToSend );
@@ -24,6 +24,7 @@ $( document ).ready( function(){
 }); // end doc ready
 
 function getKoalas(){
+  $('#viewKoalas').empty();
   console.log( 'in getKoalas' );
   // ajax call to server to get koalas
   $.ajax({
@@ -37,15 +38,16 @@ function getKoalas(){
   // display on DOM with buttons that allow edit of each
 } // end getKoalas
 
-function saveKoala( newKoala ){
+function saveKoala(newKoala){
   console.log( 'in saveKoala', newKoala );
   // ajax call to server to get koalas
   $.ajax({
     url: '/koalas',
     type: 'POST',
     data: newKoala,
-    success: function( data ){
-      console.log( 'got some koalas: ', data );
+    success: function( response ){
+      console.log('got some koalas: ', response );
+      getKoalas();
     } // end success
   }); //end ajax
 }

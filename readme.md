@@ -24,9 +24,9 @@ Task List
 [x] container in html for display
 [x] make GET request that appends to the DOM
 [x] create HTML form to add Koalas
-[ ] add functionality to the HTML Form for post requests
-[ ] Make  a POST request to insert Koalas into the database
-[ ] add refresh Data
+[x] add functionality to the HTML Form for post requests
+[x] Make  a POST request to insert Koalas into the database
+[x] add refresh Data
 
 
 

@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var pg = require('pg');
+console.log("hello");
 
 var config = {
   database: 'antares',  //name of database
@@ -28,7 +29,7 @@ router.get('/', function(req, res){
         if(errorMakingQuery){
           console.log('Attempted to query with', queryText);
           console.log('Error making query');
-          console.log(errorMakingQuery);
+
           res.sendStatus(500);
         } else {
           // console.log(result);
@@ -38,6 +39,40 @@ router.get('/', function(req, res){
       });
     }
   });
+});
+
+router.post('/', function(req, res){
+  console.log(req);
+  var koala = req.body;
+  console.log(koala);
+  //error connecting is boolean, db is what we query against
+  //done is a function that we can when we're done
+  pool.connect(function(errorConnectingToDatabase, db, done){
+    if(errorConnectingToDatabase){
+      console.log('Error connecting to the database.');
+      res.sendStatus(500);
+    } else {
+      //we connected to the database!!!
+      //Now we're going to GET things from the db
+      var queryText = 'INSERT INTO koalas ("koala_name", "gender", "age", "ready_for_transfer", "notes")'+
+      ' VALUES ($1,$2,$3,$4,$5);';
+      // errorMakingQuery is a boolean, result is an object
+      db.query(queryText, [koala.koala_name, koala.gender, koala.age, koala.ready_for_transfer, koala.notes], function(errorMakingQuery, result){
+        done();
+        if(errorMakingQuery){
+          console.log('Attempted to query with', queryText);
+          console.log('Error making query');
+          console.log(errorMakingQuery);
+          res.sendStatus(500);
+        } else {
+          // console.log(result);
+          //send back the results
+          res.sendStatus(200);
+        }
+      });
+    }
+  });
+
 });
 
 module.exports = router;
