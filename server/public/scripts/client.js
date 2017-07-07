@@ -21,6 +21,16 @@ $( document ).ready( function(){
     // call saveKoala with the new obejct
     saveKoala( objectToSend );
   }); //end addButton on click
+  $('#viewKoalas').on('click', '.deleteBtn', function(){
+    var koalaId = $(this).data('koalaid');
+    console.log($(this));
+    deleteKoalas(koalaId);
+  });
+  $('#viewKoalas').on('click', '.transferBtn', function(){
+    var koalaId = $(this).data('koalaid');
+    console.log($(this));
+    transferKoala(koalaId);
+  });
 }); // end doc ready
 
 function getKoalas(){
@@ -32,6 +42,7 @@ function getKoalas(){
     type: 'GET',
     success: function( response ){
       console.log( 'got some koalas: ', response );
+      if(koalaId)
       appendToDom(response.koalas);
     } // end success
   }); //end ajax
@@ -51,6 +62,36 @@ function saveKoala(newKoala){
     } // end success
   }); //end ajax
 }
+
+  function deleteKoalas(koalaId){
+    console.log( 'in deleteKoalas' );
+    // ajax call to server to get koalas
+    $.ajax({
+      url: '/koalas/' + koalaId,
+      type: 'DELETE',
+      success: function(response){
+        console.log(response);
+        getKoalas();
+      } // end success
+    }); //end ajax
+    // display on DOM with buttons that allow edit of each
+  } // end getKoalas
+
+  function transferKoala(koalaId){
+    console.log( 'in transferKoala', koalaId );
+    // ajax call to server to get koalas
+    $.ajax({
+      url: '/koalas',
+      type: 'PUT',
+      data: koalaId,
+      success: function( response ){
+        console.log('transfer some koalas: ', response );
+        getKoalas();
+      } // end success
+    }); //end ajax
+  }
+
+
 function appendToDom(koalas){
   for (var i = 0; i < koalas.length; i++) {
     var koala = koalas[i];
@@ -58,6 +99,9 @@ function appendToDom(koalas){
                             '<td>'+ koala.gender + '</td>' +
                             '<td>'+ koala.age + '</td>' +
                             '<td>'+ koala.ready_for_transfer + '</td>' +
-                            '<td>'+ koala.notes + '</td></tr>');
+                            '<td>'+ koala.notes + '</td>' +
+                            '<td><button class="deleteBtn" data-koalaid="' + koala.id + '">Delete</button>' +
+                            '<td><button class="transferBtn" data-koalaid="' + koala.id + '">Ready for Transfer</button>' + '</tr>');
   }
+  
 }
