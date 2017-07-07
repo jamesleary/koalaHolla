@@ -18,9 +18,9 @@ Technologies
 Task List
 [x] Check all installs
 [x] Check index sources
-[ ] Download database
-[ ] Add Tables into antares database
-[ ] Add datbase SQL
+[x] Download database
+[x] Add Tables into antares database
+[x] Add datbase SQL
 [ ] container in html for display
 [ ] make GET request that appends to the DOM
 [ ] create HTML form to add Koalas
