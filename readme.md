@@ -15,6 +15,21 @@ Technologies
 * Express
 * SQL
 
+Task List
+[x] Check all installs
+[x] Check index sources
+[ ] Download database
+[ ] Add Tables into antares database
+[ ] Add datbase SQL
+[ ] container in html for display
+[ ] make GET request that appends to the DOM
+[ ] create HTML form to add Koalas
+[ ] Make  a POST request to insert Koalas into the database
+[ ] add refresh Data
+
+
+
+
 Client needs
 ------------
 Koala Holla has provided a TSV (tab separated values) spreadsheet of their current inventory. They want a database table that houses this information and can be viewed at any time. You should add this table to your existing **antares** database. After importing the data, create a web app to display the Koalas. Users should be able to add new Koalas to the database through the provided HTML form.
