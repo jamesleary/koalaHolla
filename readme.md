@@ -21,9 +21,10 @@ Task List
 [x] Download database
 [x] Add Tables into antares database
 [x] Add datbase SQL
-[ ] container in html for display
-[ ] make GET request that appends to the DOM
-[ ] create HTML form to add Koalas
+[x] container in html for display
+[x] make GET request that appends to the DOM
+[x] create HTML form to add Koalas
+[ ] add functionality to the HTML Form for post requests
 [ ] Make  a POST request to insert Koalas into the database
 [ ] add refresh Data
 
